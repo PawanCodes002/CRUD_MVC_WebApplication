@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CRUD_MVC_WebApplication.Models.RolesModel>
+
+@{
+    ViewBag.Title = "ShowRoleManagers";
+}
+
+<h2>ShowRoleManagers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddRoleManager")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ControllerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModificationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ControllerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @if (string.Equals(item.ModificationDate,""))
+            {
+                @Html.Display("--")
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.ModificationDate)
+            }
+        </td>
+        <td>
+            @if (string.Equals(item.ModifiedBy, ""))
+            {
+                @Html.Display("--")
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.ModifiedBy)
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditExistingRole", new {  id=Convert.ToInt32(item.RoleId )}) |
+            @Html.ActionLink("Delete", "Delete", new { id= Convert.ToInt32(item.RoleId) })
+        </td>
+    </tr>
+}
+
+</table>
